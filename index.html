@@ -1,27 +1,119 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+    <head>
+	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .page-content{
+                background-image: linear-gradient(-10deg, rgb(0,0,0), rgb(200, 200, 200));
+            }
 
-    <!-- Bootstrap CSS -->
-    <link type="text/css" rel="stylesheet" href="https://raw.githubusercontent.com/Ankit404butfound/bootstrap_test_repo/main/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+            .page-text{
+                text-align: center;
+                color: rgb(200, 255, 241);
+                font-size: 20px;
+                margin:100px auto;
+            }
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+            /* h1{
+                text-decoration: underline;
+                } */
 
-    <!-- Optional JavaScript; choose one of the two! -->
+            a{
+                color: rgb(110, 185, 155);
+            }
+        </style>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <script>
+            let start_b = 10;
+            let start_r = 20;
+            let start_g = 10;
+            
+            
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-    -->
-  </body>
+            let end_r = 250;
+            let end_g = 200;
+            let end_b = 220;
+            let degree = 0;
+
+            let multiplier_start_r = 1
+            let multiplier_start_g = 1
+            let multiplier_start_b = 1
+
+            let multiplier_end_r = -1
+            let multiplier_end_g = -1
+            let multiplier_end_b = -1
+
+            window.setInterval(change_gradient, 50);
+            
+            
+
+            function change_gradient(){
+                start_delta_r = Math.random()*10*multiplier_start_r;
+                start_delta_g = Math.random()*10*multiplier_start_g;
+                start_delta_b = Math.random()*10*multiplier_start_b;
+
+                end_delta_r = Math.random()*5;
+                end_delta_g = Math.random()*5;
+                end_delta_b = Math.random()*5;
+                
+                if (start_r > 240){
+                    multiplier_start_r = -1 * multiplier_start_r;
+                    start_r = 230;
+                }
+                if (start_r < 50){
+                    multiplier_start_r = -1 * multiplier_start_r;
+                    start_r = 55;
+                }
+
+                if (start_g > 240){
+                    multiplier_start_g = -1 * multiplier_start_g;
+                    start_g = 230;
+                }
+                if (start_g < 50){
+                    multiplier_start_g = -1 * multiplier_start_g;
+                    start_g = 55;
+                }
+
+                if (start_b > 240){
+                    multiplier_start_b = -1 * multiplier_start_b;
+                    start_b = 230;
+                }
+                if (start_b < 50){
+                    multiplier_start_b = -1 * multiplier_start_b;
+                    start_b = 55;
+                }
+                
+
+                if (degree > 360) deg = 0;
+
+                start_r = start_r + start_delta_r;
+                start_g = start_g + start_delta_g;
+                start_b = start_b + start_delta_b;
+
+                end_r = end_r - start_delta_r;
+                end_g = end_g - start_delta_g;
+                end_b = end_b - start_delta_r;
+
+                degree ++;
+
+                document.getElementById("page_body").style.background = "linear-gradient("+degree+"deg,"+ "rgb(" + start_r + "," + start_g + ","+ start_b+"), rgb(" + end_r + "," + end_g + "," + end_b + "))";
+                
+            }
+        </script>
+            
+    </head>
+        
+    <body class="page-content" id="page_body" onload=init()>
+        <h1 style="color:rgb(255, 255, 255)"; align="center">
+            ANKIT RAJ MAHAPATRA
+        </h1>
+        <div class="page-text">
+            <p>Hello there, I am Ankit Raj aka Ankit Raj Mahpatra, I am a first-year BTech student.</p>
+            <p>I know a bit of <a href="https://www.python.org" target="blank">Python</a>, <a href="https://www.arduino.cc" target="blank">Arduino</a> and currently learning HTML-CSS.</p>
+            <p>I am the creator of <a href="https://pypi.org/project/pywhatkit/" target="blank">PyWhatKit</a> which has over 100k userbase till now.</p>
+            <p>I have a <a href="https://github.com/Ankit404butfound" target="blank">GitHub account</a> where I share most of my projects, there are some basic CS projects only.</p>
+            <p>Currently, I am living in Delhi and I have been to almost 5 states of India.</p>
+
+        </div>
+    </body>
 </html>
