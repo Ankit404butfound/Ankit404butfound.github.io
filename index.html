@@ -1,116 +1,155 @@
 <html>
     <head>
-	<link rel="icon" href="https://avatars.githubusercontent.com/u/54436840" type="image/gif">
-	<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            .page-content{
-                background-image: linear-gradient(-10deg, rgb(0,0,0), rgb(200, 200, 200));
-            }
-            .page-text{
-                text-align: center;
-                color: rgb(200, 255, 241);
-                font-size: 20px;
-                margin:100px auto;
-            }
+        <title>Ankit Raj Mahapatra</title>
+        <link rel="icon" href="https://avatars.githubusercontent.com/u/54436840" type="image/gif">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                .page-content{
+                    background-image: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+                }
+
+                .page-content p:hover{
+                    transition: all 0.2s linear;
+                    color: rgb(200, 200, 200);
+                    font-size: 21px;
+                }
+
+                .page-text{
+                    text-align: center;
+                    color: rgb(200, 255, 241);
+                    font-size: 20px;
+                    margin:100px auto;
+                    size: 1px;
+                }
 
 
-            a{
-                color: rgb(110, 185, 155);
-            }
-        </style>
+                a{
+                    color: rgb(195, 255, 231);
+                }
 
-        <script>
-            let start_b = 10;
-            let start_r = 20;
-            let start_g = 10;
-            
-            
+                .mid{
+                    margin:10px auto;
+                    text-align: center;
+                    font-size: 100px;
+                    color: #ffffff;
+                }
 
-            let end_r = 250;
-            let end_g = 200;
-            let end_b = 220;
-            let degree = 0;
+                .mid i:hover{
+                    color:#ffffff;
+                    font-size: 110px;
+                    transition: all 0.2s linear;
+                }
 
-            let multiplier_start_r = 1
-            let multiplier_start_g = 1
-            let multiplier_start_b = 1
+                body {
+                    font-family: 'Trebuchet MS', sans-serif;
+                }
 
-            let multiplier_end_r = -1
-            let multiplier_end_g = -1
-            let multiplier_end_b = -1
-
-            window.setInterval(change_gradient, 50);
-            
-            
-
-            function change_gradient(){
-                start_delta_r = Math.random()*10*multiplier_start_r;
-                start_delta_g = Math.random()*10*multiplier_start_g;
-                start_delta_b = Math.random()*10*multiplier_start_b;
-
-                end_delta_r = Math.random()*5;
-                end_delta_g = Math.random()*5;
-                end_delta_b = Math.random()*5;
                 
-                if (start_r > 240){
-                    multiplier_start_r = -1 * multiplier_start_r;
-                    start_r = 230;
-                }
-                if (start_r < 50){
-                    multiplier_start_r = -1 * multiplier_start_r;
-                    start_r = 55;
-                }
+            </style>
 
-                if (start_g > 240){
-                    multiplier_start_g = -1 * multiplier_start_g;
-                    start_g = 230;
-                }
-                if (start_g < 50){
-                    multiplier_start_g = -1 * multiplier_start_g;
-                    start_g = 55;
-                }
-
-                if (start_b > 240){
-                    multiplier_start_b = -1 * multiplier_start_b;
-                    start_b = 230;
-                }
-                if (start_b < 50){
-                    multiplier_start_b = -1 * multiplier_start_b;
-                    start_b = 55;
-                }
+            <script>
+                let start_b = 10;
+                let start_r = 20;
+                let start_g = 10;
+                
                 
 
-                if (degree > 360) deg = 0;
+                let end_r = 250;
+                let end_g = 200;
+                let end_b = 220;
+                let degree = 0;
 
-                start_r = start_r + start_delta_r;
-                start_g = start_g + start_delta_g;
-                start_b = start_b + start_delta_b;
+                let multiplier_start_r = 1
+                let multiplier_start_g = 1
+                let multiplier_start_b = 1
 
-                end_r = end_r - start_delta_r;
-                end_g = end_g - start_delta_g;
-                end_b = end_b - start_delta_r;
+                let multiplier_end_r = -1
+                let multiplier_end_g = -1
+                let multiplier_end_b = -1
 
-                degree ++;
-
-                document.getElementById("page_body").style.background = "linear-gradient("+degree+"deg,"+ "rgb(" + start_r + "," + start_g + ","+ start_b+"), rgb(" + end_r + "," + end_g + "," + end_b + "))";
+                //window.setInterval(change_gradient, 100);
                 
-            }
-        </script>
+                
+
+                function change_gradient(){
+                    start_delta_r = Math.random()*10*multiplier_start_r;
+                    start_delta_g = Math.random()*10*multiplier_start_g;
+                    start_delta_b = Math.random()*10*multiplier_start_b;
+
+                    end_delta_r = Math.random()*5;
+                    end_delta_g = Math.random()*5;
+                    end_delta_b = Math.random()*5;
+                    
+                    if (start_r > 240){
+                        multiplier_start_r = -1 * multiplier_start_r;
+                        start_r = 230;
+                    }
+                    if (start_r < 50){
+                        multiplier_start_r = -1 * multiplier_start_r;
+                        start_r = 55;
+                    }
+
+                    if (start_g > 240){
+                        multiplier_start_g = -1 * multiplier_start_g;
+                        start_g = 230;
+                    }
+                    if (start_g < 50){
+                        multiplier_start_g = -1 * multiplier_start_g;
+                        start_g = 55;
+                    }
+
+                    if (start_b > 240){
+                        multiplier_start_b = -1 * multiplier_start_b;
+                        start_b = 230;
+                    }
+                    if (start_b < 50){
+                        multiplier_start_b = -1 * multiplier_start_b;
+                        start_b = 55;
+                    }
+                    
+
+                    if (degree > 360) deg = 0;
+
+                    start_r = start_r + start_delta_r;
+                    start_g = start_g + start_delta_g;
+                    start_b = start_b + start_delta_b;
+
+                    end_r = end_r - start_delta_r;
+                    end_g = end_g - start_delta_g;
+                    end_b = end_b - start_delta_r;
+
+                    degree ++;
+
+                    degree = 50;
+
+                    document.getElementById("page_body").style.background = "linear-gradient("+degree+"deg,"+ "rgb(" + start_r + "," + start_g + ","+ start_b+"), rgb(" + end_r + "," + end_g + "," + end_b + "))";
+                    
+                }
+            </script>
             
     </head>
         
-    <body class="page-content" id="page_body" onload=init()>
-        <h1 style="color:rgb(255, 255, 255)"; align="center">
-            ANKIT RAJ MAHAPATRA
-        </h1>
+    <body class="page-content" id="page_body">
+        <div style="color:rgb(255, 255, 255)" align="center" font-size=30px;>
+            <h1>
+                ANKIT RAJ MAHAPATRA
+            </h1>
+        </div class="content">
         <div class="page-text">
-            <p>Hello there, I am Ankit Raj aka Ankit Raj Mahpatra, I am a first-year BTech student.</p>
-            <p>I know a bit of <a href="https://www.python.org" target="blank">Python</a>, <a href="https://www.arduino.cc" target="blank">Arduino</a> and currently learning HTML-CSS.</p>
+            <p>Hello there, I am Ankit Raj aka Ankit Raj Mahpatra, I am a second-year BTech student.</p>
+            <p>I know a bit of PythonArduino</a> and currently learning HTML-CSS.
             <p>I am the creator of <a href="https://pypi.org/project/pywhatkit/" target="blank">PyWhatKit</a> which has over 100k userbase till now.</p>
             <p>I have a <a href="https://github.com/Ankit404butfound" target="blank">GitHub account</a> where I share most of my projects, there are some basic CS projects only.</p>
             <p>Currently, I am living in Delhi and I have been to almost 5 states of India.</p>
 
+        </div>
+        <div class="mid">
+            <a href="https://github.com/Ankit404butfound/" target="_blank"><i class="fa fa-github"></i></a>
+            <a href="https://www.quora.com/profile/Ankit-Raj-Mahapatra-3" target="_blank"><i class="fa fa-quora"></i></a>
+            <a href="https://www.youtube.com/watch?v=zuwYY8CKmZA" target="_blank"><i class="fa fa-youtube"></i></a>
+        </div>
         </div>
     </body>
 </html>
