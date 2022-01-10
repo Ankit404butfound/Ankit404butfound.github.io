@@ -16,12 +16,45 @@
                     font-size: 21px;
                 }
 
+                .gradient-text{
+                    /* Fallback: Set a background color. */
+                    background-color: red;
+                    
+                    /* Create the gradient. */
+                    background-image: linear-gradient(45deg, #78f3e9, #ea97ff);
+                    
+                    /* Set the background size and repeat properties. */
+                    background-size: 100%;
+                    background-repeat: repeat;
+
+                    /* Use the text as a mask for the background. */
+                    /* This will show the gradient as a text color rather than element bg. */
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent; 
+                    -moz-background-clip: text;
+                    -moz-text-fill-color: transparent;
+                    }
+                
+
                 .page-text{
                     text-align: center;
                     color: rgb(200, 255, 241);
                     font-size: 20px;
                     margin:100px auto;
                     size: 1px;
+                }
+
+                .box {
+                    width: 50%;
+                    border: solid #0f2027 2px;
+                    box-shadow: 2.5px 2.5px #0f2027;
+                    border-radius: 10px;
+                }
+
+                @media screen and (max-width: 600px) {
+                    .box {
+                        width: 90%;
+                    }
                 }
 
 
@@ -34,6 +67,12 @@
                     text-align: center;
                     font-size: 100px;
                     color: #ffffff;
+                }
+
+                h1 {
+                    font-weight: bold;
+                    color: #fff;
+                    font-size: 32px;
                 }
 
                 .mid i:hover{
@@ -131,12 +170,12 @@
     </head>
         
     <body class="page-content" id="page_body">
-        <div style="color:rgb(255, 255, 255)" align="center" font-size=30px;>
-            <h1>
+        <div style="color:rgb(255, 255, 255)" align="center">
+            <h1 class="gradient-text">
                 ANKIT RAJ MAHAPATRA
             </h1>
         </div class="content">
-        <div class="page-text">
+        <div class="page-text gradient-text box">
             <p>Hello there, I am Ankit Raj aka Ankit Raj Mahpatra, I am a second-year BTech student.</p>
             <p>I know a bit of PythonArduino</a> and currently learning HTML-CSS.
             <p>I am the creator of <a href="https://pypi.org/project/pywhatkit/" target="blank">PyWhatKit</a> which has over 100k userbase till now.</p>
@@ -144,7 +183,7 @@
             <p>Currently, I am living in Delhi and I have been to almost 5 states of India.</p>
 
         </div>
-        <div class="mid">
+        <div class="mid gradient-text">
             <a href="https://github.com/Ankit404butfound/" target="_blank"><i class="fa fa-github"></i></a>
             <a href="https://www.quora.com/profile/Ankit-Raj-Mahapatra-3" target="_blank"><i class="fa fa-quora"></i></a>
             <a href="https://www.youtube.com/watch?v=zuwYY8CKmZA" target="_blank"><i class="fa fa-youtube"></i></a>
