@@ -79,13 +79,13 @@
 
                 .mid i:hover{
                     color:#ffffff;
-                    font-size: 110px;
+                    font-size: 70px;
                     transition: all 0.2s linear;
                 }
 
                 body {
                     font-family: 'Trebuchet MS', sans-serif;
-                    background-image: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+                    background-image: url("bg/bg0.png");
                 }
 
                 img{
@@ -128,9 +128,11 @@
                 let counter = 0;
                 let delta_counter = 1;
 
+                let bg_ctr = 0;
+
                 let deg = -80;
-                window.setInterval(change_gradient, 100);
-                
+                window.setInterval(change_gradient, 50);
+                window.setInterval(change_bg, 150);
                 
 
                 function change_gradient(){
@@ -153,11 +155,16 @@
                     
                     document.getElementById("wave").style.backgroundImage = "linear-gradient("+deg+"deg,"+ "rgb(" + r + "," + g + ","+ b+"), rgb(" + er + "," + eg + "," + eb + "))";   
                 }
+
+                function change_bg(){
+                    document.body.style.backgroundImage = "url(bg/bg" + bg_ctr + ".png)";
+                    bg_ctr = +!bg_ctr;
+                }
             </script>
             
     </head>
         
-    <body>
+    <body id="body">
         <div class="page-content box mid" id="page_body">
         <div>
         <div class="gradient-text" align="center">
@@ -175,10 +182,11 @@
             <p>Currently, I am living in Delhi and I have been to almost 5 states of India.</p>
 
         </div>
-        <div class="mid">
+        <div class="mid" style="font-size: 60px;">
             <a href="https://github.com/Ankit404butfound/" target="_blank"><i class="fa fa-github"></i></a>
             <a href="https://www.quora.com/profile/Ankit-Raj-Mahapatra-3" target="_blank"><i class="fa fa-quora"></i></a>
             <a href="https://www.youtube.com/watch?v=zuwYY8CKmZA" target="_blank"><i class="fa fa-youtube"></i></a>
+            <a href="mailto://ankitrajjitendra816@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
         </div>
         </div>
         </div>
