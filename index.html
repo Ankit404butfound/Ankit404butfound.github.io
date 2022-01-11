@@ -7,7 +7,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <style>
                 .page-content{
-                    background-image: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+                    background-image: linear-gradient(to right, #0d2936, #203a43, #2c5364);
                 }
 
                 .page-content p:hover{
@@ -21,7 +21,7 @@
                     background-color: red;
                     
                     /* Create the gradient. */
-                    background-image: linear-gradient(45deg, #78f3e9, #ea97ff);
+                    background-image: linear-gradient(45deg, rgb(120,243,233), rgb(195, 99, 219));
                     
                     /* Set the background size and repeat properties. */
                     background-size: 100%;
@@ -46,7 +46,7 @@
 
                 .box {
                     width: 50%;
-                    border: solid 1px;
+                    border: solid 0px;
                     border-color: #00344b;
                     box-shadow: 2.5px 2.5px #0f2027;
                     border-radius: 10px;
@@ -85,100 +85,73 @@
 
                 body {
                     font-family: 'Trebuchet MS', sans-serif;
+                    background-image: linear-gradient(to right, #0f2027, #203a43, #2c5364);
                 }
                 
             </style>
 
             <script>
-                let start_b = 10;
-                let start_r = 20;
-                let start_g = 10;
-                
-                
+                let start_r = 120;
+                let start_g = 243;
+                let start_b = 233;
 
-                let end_r = 250;
-                let end_g = 200;
-                let end_b = 220;
-                let degree = 0;
+                let end_r = 195;
+                let end_g = 99;
+                let end_b = 219;
 
-                let multiplier_start_r = 1
-                let multiplier_start_g = 1
-                let multiplier_start_b = 1
+                let r_change  = 2.08;
+                let g_change = -4;
+                let b_change = 0.388;
 
-                let multiplier_end_r = -1
-                let multiplier_end_g = -1
-                let multiplier_end_b = -1
+                let r = start_r;
+                let g = start_g;
+                let b = start_b;
 
-                //window.setInterval(change_gradient, 100);
+                let er = end_r;
+                let eg = end_g;
+                let eb = end_b;
+
+                let counter = 0;
+                let delta_counter = 1;
+
+                let deg = -80;
+                window.setInterval(change_gradient, 100);
                 
                 
 
                 function change_gradient(){
-                    start_delta_r = Math.random()*10*multiplier_start_r;
-                    start_delta_g = Math.random()*10*multiplier_start_g;
-                    start_delta_b = Math.random()*10*multiplier_start_b;
+                    r += r_change;
+                    g += g_change;
+                    b += b_change;
 
-                    end_delta_r = Math.random()*5;
-                    end_delta_g = Math.random()*5;
-                    end_delta_b = Math.random()*5;
+                    er -= r_change;
+                    eg -= g_change;
+                    eb -= b_change;
                     
-                    if (start_r > 240){
-                        multiplier_start_r = -1 * multiplier_start_r;
-                        start_r = 230;
+                    if (counter > 36 || counter < 0){
+                        r_change = -r_change;
+                        g_change = -g_change;
+                        b_change = -b_change;
+                        delta_counter = -delta_counter;
                     }
-                    if (start_r < 50){
-                        multiplier_start_r = -1 * multiplier_start_r;
-                        start_r = 55;
-                    }
-
-                    if (start_g > 240){
-                        multiplier_start_g = -1 * multiplier_start_g;
-                        start_g = 230;
-                    }
-                    if (start_g < 50){
-                        multiplier_start_g = -1 * multiplier_start_g;
-                        start_g = 55;
-                    }
-
-                    if (start_b > 240){
-                        multiplier_start_b = -1 * multiplier_start_b;
-                        start_b = 230;
-                    }
-                    if (start_b < 50){
-                        multiplier_start_b = -1 * multiplier_start_b;
-                        start_b = 55;
-                    }
+                    console.log(er, eg, eb);
+                    counter += delta_counter;
                     
-
-                    if (degree > 360) deg = 0;
-
-                    start_r = start_r + start_delta_r;
-                    start_g = start_g + start_delta_g;
-                    start_b = start_b + start_delta_b;
-
-                    end_r = end_r - start_delta_r;
-                    end_g = end_g - start_delta_g;
-                    end_b = end_b - start_delta_r;
-
-                    degree ++;
-
-                    degree = 50;
-
-                    document.getElementById("page_body").style.background = "linear-gradient("+degree+"deg,"+ "rgb(" + start_r + "," + start_g + ","+ start_b+"), rgb(" + end_r + "," + end_g + "," + end_b + "))";
-                    
+                    document.getElementById("wave").style.backgroundImage = "linear-gradient("+deg+"deg,"+ "rgb(" + r + "," + g + ","+ b+"), rgb(" + er + "," + eg + "," + eb + "))";   
                 }
             </script>
             
     </head>
         
-    <body class="page-content" id="page_body">
-        <div class="box mid">
+    <body>
+        <div class="page-content box mid" id="page_body">
+        <div class="gradient-text" id="wave">
         <div style="color:rgb(255, 255, 255)" align="center">
-            <h1 class="gradient-text">
+            <h1>
                 ANKIT RAJ MAHAPATRA
             </h1>
         </div>
-        <div class="page-text gradient-text">
+        <div class="page-text">
             <p>Hello there, I am Ankit Raj aka Ankit Raj Mahpatra, I am a second-year BTech student.</p>
             <p>I know a bit of PythonArduino</a> and currently learning HTML-CSS.
             <p>I am the creator of <a href="https://pypi.org/project/pywhatkit/" target="blank">PyWhatKit</a> which has over 100k userbase till now.</p>
@@ -186,10 +159,11 @@
             <p>Currently, I am living in Delhi and I have been to almost 5 states of India.</p>
 
         </div>
-        <div class="mid gradient-text">
+        <div class="mid">
             <a href="https://github.com/Ankit404butfound/" target="_blank"><i class="fa fa-github"></i></a>
             <a href="https://www.quora.com/profile/Ankit-Raj-Mahapatra-3" target="_blank"><i class="fa fa-quora"></i></a>
             <a href="https://www.youtube.com/watch?v=zuwYY8CKmZA" target="_blank"><i class="fa fa-youtube"></i></a>
+        </div>
         </div>
         </div>
     </body>
