@@ -18,7 +18,6 @@
 
                 .gradient-text{
                     /* Fallback: Set a background color. */
-                    background-color: red;
                     
                     /* Create the gradient. */
                     background-image: linear-gradient(45deg, rgb(120,243,233), rgb(195, 99, 219));
@@ -34,6 +33,10 @@
                     -moz-background-clip: text;
                     -moz-text-fill-color: transparent;
                     }
+                
+                .header{
+                    background-image: -moz-radial-gradient(center, ellipse cover, rgb(120,243,233), rgb(195, 99, 219));
+                }
                 
 
                 .page-text{
@@ -85,7 +88,7 @@
 
                 body {
                     font-family: 'Trebuchet MS', sans-serif;
-                    background-image: url("bg/bg0.png");
+                    background-image: linear-gradient(to right, #0d2936, #203a43, #2c5364);
                 }
 
                 img{
@@ -100,6 +103,17 @@
                         max-width:70%;
                         max-height:70%;
                     }
+                }
+
+                ul {
+                    display: table;
+                    margin: 0 auto;
+                }
+
+                .align-perfect{
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    text-align: left;
                 }
                 
             </style>
@@ -131,8 +145,9 @@
                 let bg_ctr = 0;
 
                 let deg = -80;
+                let bg_deg = 0;
                 window.setInterval(change_gradient, 50);
-                window.setInterval(change_bg, 150);
+                window.setInterval(change_bg, 50);
                 
 
                 function change_gradient(){
@@ -150,15 +165,18 @@
                         b_change = -b_change;
                         delta_counter = -delta_counter;
                     }
-                    console.log(er, eg, eb);
                     counter += delta_counter;
                     
                     document.getElementById("wave").style.backgroundImage = "linear-gradient("+deg+"deg,"+ "rgb(" + r + "," + g + ","+ b+"), rgb(" + er + "," + eg + "," + eb + "))";   
                 }
 
                 function change_bg(){
-                    document.body.style.backgroundImage = "url(bg/bg" + bg_ctr + ".png)";
-                    bg_ctr = +!bg_ctr;
+                    if (bg_deg > 360){
+                        bg_deg = 0;
+                    }
+                    document.body.style.backgroundImage = "linear-gradient("+bg_deg+"deg, #0d2936, #203a43, #2c5364)";
+                    bg_deg += 1;
+                    
                 }
             </script>
             
@@ -167,29 +185,52 @@
     <body id="body">
         <div class="page-content box mid" id="page_body">
         <div>
-        <div class="gradient-text" align="center">
-            <p style="font-size: 50px; margin-bottom: 0px">
+        <div class="gradient-text" align="center" id="header_wave" onmouseenter="mouse_enter()", onmouseleave="mouse_leave()">
+            <p style="font-size: 50px; margin-bottom: 0px; text-shadow: 1px 1px 8px rgb(16, 6, 37);">
                 ANKIT RAJ MAHAPATRA
             </p>
         </div>
         <img src="https://avatars.githubusercontent.com/u/54436840">
         <div class="gradient-text" id="wave">
+            <div class="mid" style="font-size: 60px; margin-top: 50px;">
+                <a href="https://github.com/Ankit404butfound/" target="_blank"><i class="fa fa-github"></i></a>
+                <a href="https://www.quora.com/profile/Ankit-Raj-Mahapatra-3" target="_blank"><i class="fa fa-quora"></i></a>
+                <a href="https://www.youtube.com/watch?v=zuwYY8CKmZA" target="_blank"><i class="fa fa-youtube"></i></a>
+                <a href="mailto://ankitrajjitendra816@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+            </div>
         <div class="page-text">
+            <div class="align-perfect">
             <p>Hello there, I am Ankit Raj aka Ankit Raj Mahpatra, I am a second-year BTech student.</p>
-            <p>I know a bit of PythonArduino</a> and currently learning HTML-CSS.
-            <p>I am the creator of <a href="https://pypi.org/project/pywhatkit/" target="blank">PyWhatKit</a> which has over 100k userbase till now.</p>
+            <p>I know a bit of Python, Arduino, JS, MySQL, Java, PHP</a> and currently learning GoLang.</p>
+            <p>I am the creator of <a href="https://pypi.org/project/pywhatkit/" target="blank">PyWhatKit</a> which has over 300k userbase till now.</p>
             <p>I have a <a href="https://github.com/Ankit404butfound" target="blank">GitHub account</a> where I share most of my projects, there are some basic CS projects only.</p>
-            <p>Currently, I am living in Delhi and I have been to almost 5 states of India.</p>
+            <p>Currently, I am living in Delhi.</p>
+            <p>I am currently a Junior Software developer at Aveti Learning Pvt. Ltd. and aspire to became a greate Human</p>
+            </div>
 
-        </div>
-        <div class="mid" style="font-size: 60px;">
-            <a href="https://github.com/Ankit404butfound/" target="_blank"><i class="fa fa-github"></i></a>
-            <a href="https://www.quora.com/profile/Ankit-Raj-Mahapatra-3" target="_blank"><i class="fa fa-quora"></i></a>
-            <a href="https://www.youtube.com/watch?v=zuwYY8CKmZA" target="_blank"><i class="fa fa-youtube"></i></a>
-            <a href="mailto://ankitrajjitendra816@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
-        </div>
-        </div>
-        </div>
-        </div>
-    </body>
+        
+        
+            <p style="margin-top: 100px; font-size: 40px;">Languages and Tools I know</p>
+            <p align="center" style="margin-top: -50px;"> <a href="https://developer.android.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original-wordmark.svg" alt="android" width="40" height="40"/> </a> <a href="https://www.arduino.cc/" target="_blank"> <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="arduino" width="40" height="40"/> </a> <a href="https://aws.amazon.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://www.cprogramming.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> <a href="https://flask.palletsprojects.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="flask" width="40" height="40"/> </a> <a href="https://heroku.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://opencv.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="opencv" width="40" height="40"/> </a> <a href="https://www.php.net" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.qt.io/" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg" alt="qt" width="40" height="40"/> </a> <a href="https://www.selenium.dev" target="_blank"> <img src="https://raw.githubusercontent.com/detain/svg-logos/780f25886640cef088af994181646db2f6b1a3f8/svg/selenium-logo.svg" alt="selenium" width="40" height="40"/> </a> <a href="https://www.sqlite.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg" alt="sqlite" width="40" height="40"/> </a> 
+                <a href="https://go.dev/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg" alt="GO" width="40" height="40"/> </a>
+            </p>
+            <p style="margin-top: 80px; font-size: 40px;">Some of my famous projects</p>
+            
+            <ul align="left">
+                <li><a href="https://github.com/Ankit404butfound/PyWhatKit">PyWhatKit</a></li>
+                <li><a href="https://github.com/Ankit404butfound/HomeworkMachine">HomeworkMachine</a></li>
+                <li><a href="https://github.com/Ankit404butfound/RandomProjects">Keylogger</a></li>
+            
+            </ul>
+            <br>
+
+        </div>  
+    
+    </div> 
+        
+</div>
+  
+</div>
+<p style="text-align: center; color: rgb(34, 102, 131); margin-bottom: 50px;">Created by: Ankit Raj Mahapatra<br>Hosted by: GitHub</p>  
+</body>
 </html>
