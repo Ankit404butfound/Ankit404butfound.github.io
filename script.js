@@ -4,22 +4,22 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let isScrolling = false;  // Flag to prevent multiple scrolling actions
+let isScrolling = false;
 const stars = [];
+const mouseTrailParticles = [];  // Array to store the trail particles
 
 window.addEventListener('wheel', (event) => {
-    if (isScrolling) return; // Prevent multiple scroll actions
+    if (isScrolling) return;
 
-    isScrolling = true; // Lock scrolling
+    isScrolling = true;
 
-    const direction = event.deltaY > 0 ? 'down' : 'up'; // Determine scroll direction
+    const direction = event.deltaY > 0 ? 'down' : 'up';
 
     scrollToSection(direction);
 
-    // Unlock scrolling after the transition
     setTimeout(() => {
         isScrolling = false;
-    }, 1000); // Timeout duration should match scroll transition time
+    }, 1000);
 });
 
 function scrollToSection(direction) {
@@ -28,13 +28,10 @@ function scrollToSection(direction) {
     const sectionHeight = window.innerHeight;
 
     let targetSection;
-    let currentSection;
 
-    // Find the current section based on scroll position
     sections.forEach((section, index) => {
         const sectionTop = section.offsetTop;
         if (currentScroll >= sectionTop - sectionHeight / 2 && currentScroll < sectionTop + sectionHeight / 2) {
-            currentSection = section;
             if (direction === 'down' && sections[index + 1]) {
                 targetSection = sections[index + 1];
             } else if (direction === 'up' && sections[index - 1]) {
@@ -51,8 +48,6 @@ function scrollToSection(direction) {
     }
 }
 
-
-
 class ShootingStar {
     constructor() {
         this.reset();
@@ -65,7 +60,7 @@ class ShootingStar {
         this.speed = Math.random() * 3 + 2;
         this.angle = Math.PI / 4;
         this.opacity = 0;
-        this.opacityChange = Math.random() * 0.02 + 0.005; // Controls fading speed
+        this.opacityChange = Math.random() * 0.02 + 0.005;
         this.fadingIn = true;
     }
 
@@ -88,10 +83,9 @@ class ShootingStar {
     }
 
     draw() {
-        // Create a gradient that goes from one color to another
         const gradient = ctx.createLinearGradient(this.x, this.y, this.x - Math.cos(this.angle) * this.length, this.y - Math.sin(this.angle) * this.length);
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`); // Starting color (white)
-        gradient.addColorStop(1, `rgba(0, 124, 190, ${this.opacity})`); // Ending color (cyan)
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`);
+        gradient.addColorStop(1, `rgba(0, 124, 190, ${this.opacity})`);
 
         ctx.lineWidth = 2;
         ctx.beginPath();
@@ -106,12 +100,51 @@ for (let i = 0; i < 15; i++) {
     stars.push(new ShootingStar());
 }
 
+class MouseTrail {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 3 + 2;  // Size of the trail particles
+        this.life = 100;  // Time until the particle fades away
+        this.opacity = 1;
+    }
+
+    update() {
+        this.life -= 2;  // Reduce life
+        this.opacity = this.life / 100;  // Fade out effect
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(124, 124, 129, ${this.opacity})`;  // White trail with fading opacity
+        ctx.fill();
+    }
+}
+
+// Track mouse movements and create particles
+window.addEventListener('mousemove', (e) => {
+    mouseTrailParticles.push(new MouseTrail(e.clientX, e.clientY));
+});
+
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    // Draw the shooting stars
     for (let star of stars) {
         star.update();
         star.draw();
+    }
+
+    // Draw mouse trail particles
+    for (let i = 0; i < mouseTrailParticles.length; i++) {
+        const particle = mouseTrailParticles[i];
+        particle.update();
+        particle.draw();
+        if (particle.life <= 0) {
+            mouseTrailParticles.splice(i, 1);  // Remove particle when it's fully faded
+            i--;
+        }
     }
 
     requestAnimationFrame(animate);
