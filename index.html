@@ -1,239 +1,116 @@
-<html>
-    <head>
-        <title>Ankit Raj Mahapatra</title>
-        <link rel="icon" href="https://avatars.githubusercontent.com/u/54436840" type="image/gif">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <style>
-                .page-content{
-                    background-image: linear-gradient(to right, #0d2936, #203a43, #2c5364);
-                }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooting Stars Effect</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
 
-                .page-content p:hover{
-                    transition: all 0.2s linear;
-                    color: rgb(200, 200, 200);
-                    font-size: 21px;
-                }
-
-                .gradient-text{
-                    /* Fallback: Set a background color. */
-                    
-                    /* Create the gradient. */
-                    background-image: linear-gradient(45deg, rgb(120,243,233), rgb(195, 99, 219));
-                    
-                    /* Set the background size and repeat properties. */
-                    background-size: 100%;
-                    background-repeat: repeat;
-
-                    /* Use the text as a mask for the background. */
-                    /* This will show the gradient as a text color rather than element bg. */
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent; 
-                    -moz-background-clip: text;
-                    -moz-text-fill-color: transparent;
-                    }
-                
-                .header{
-                    background-image: -moz-radial-gradient(center, ellipse cover, rgb(120,243,233), rgb(195, 99, 219));
-                }
-                
-
-                .page-text{
-                    text-align: center;
-                    color: rgb(200, 255, 241);
-                    font-size: 20px;
-                    margin:50px auto;
-                    size: 1px;
-                }
-
-                .box {
-                    width: 50%;
-                    border: solid 0px;
-                    border-color: #00344b;
-                    box-shadow: 2.5px 2.5px #0f2027;
-                    border-radius: 10px;
-                    text-align: center;
-                }
-
-                @media screen and (max-width: 600px) {
-                    .box {
-                        width: 99%;
-                    }
-                }
-
-
-                a{
-                    color: rgb(195, 255, 231);
-                }
-
-                .mid{
-                    margin:10px auto;
-                    text-align: center;
-                    font-size: 100px;
-                    color: #ffffff;
-                }
-
-                h1 {
-                    font-weight: bold;
-                    color: #fff;
-                    font-size: 32px;
-                }
-
-                .mid i:hover{
-                    color:#ffffff;
-                    font-size: 70px;
-                    transition: all 0.2s linear;
-                }
-
-                body {
-                    font-family: 'Trebuchet MS', sans-serif;
-                    background-image: linear-gradient(to right, #0d2936, #203a43, #2c5364);
-                }
-
-                img{
-                    margin-top: 50px;
-                    max-width:70%;
-                    max-height:70%;
-                }
-
-                @media screen and (max-width: 600px) {
-                    img {
-                        margin-top: 50px;
-                        max-width:70%;
-                        max-height:70%;
-                    }
-                }
-
-                ul {
-                    display: table;
-                    margin: 0 auto;
-                }
-
-                .align-perfect{
-                    margin-left: 10%;
-                    margin-right: 10%;
-                    text-align: left;
-                }
-                
-            </style>
-
-            <script>
-                let start_r = 120;
-                let start_g = 243;
-                let start_b = 233;
-
-                let end_r = 195;
-                let end_g = 99;
-                let end_b = 219;
-
-                let r_change  = 2.08;
-                let g_change = -4;
-                let b_change = 0.388;
-
-                let r = start_r;
-                let g = start_g;
-                let b = start_b;
-
-                let er = end_r;
-                let eg = end_g;
-                let eb = end_b;
-
-                let counter = 0;
-                let delta_counter = 1;
-
-                let bg_ctr = 0;
-
-                let deg = -80;
-                let bg_deg = 0;
-                window.setInterval(change_gradient, 50);
-                window.setInterval(change_bg, 50);
-                
-
-                function change_gradient(){
-                    r += r_change;
-                    g += g_change;
-                    b += b_change;
-
-                    er -= r_change;
-                    eg -= g_change;
-                    eb -= b_change;
-                    
-                    if (counter > 36 || counter < 0){
-                        r_change = -r_change;
-                        g_change = -g_change;
-                        b_change = -b_change;
-                        delta_counter = -delta_counter;
-                    }
-                    counter += delta_counter;
-                    
-                    document.getElementById("wave").style.backgroundImage = "linear-gradient("+deg+"deg,"+ "rgb(" + r + "," + g + ","+ b+"), rgb(" + er + "," + eg + "," + eb + "))";   
-                }
-
-                function change_bg(){
-                    if (bg_deg > 360){
-                        bg_deg = 0;
-                    }
-                    document.body.style.backgroundImage = "linear-gradient("+bg_deg+"deg, #0d2936, #203a43, #2c5364)";
-                    bg_deg += 1;
-                    
-                }
-            </script>
-            
-    </head>
-        
-    <body id="body">
-        <div class="page-content box mid" id="page_body">
-        <div>
-        <div class="gradient-text" align="center" id="header_wave" onmouseenter="mouse_enter()", onmouseleave="mouse_leave()">
-            <p style="font-size: 50px; margin-bottom: 0px; text-shadow: 1px 1px 8px rgb(16, 6, 37);">
-                ANKIT RAJ MAHAPATRA
-            </p>
-        </div>
-        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/54436840">
-        <div class="gradient-text" id="wave">
-            <div class="mid" style="font-size: 60px; margin-top: 50px;">
-                <a href="https://github.com/Ankit404butfound/" target="_blank"><i class="fa fa-github"></i></a>
-                <a href="https://www.quora.com/profile/Ankit-Raj-Mahapatra-3" target="_blank"><i class="fa fa-quora"></i></a>
-                <a href="https://www.youtube.com/watch?v=zuwYY8CKmZA" target="_blank"><i class="fa fa-youtube"></i></a>
-                <a href="mailto://ankitrajjitendra816@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
-            </div>
-        <div class="page-text">
-            <div class="align-perfect">
-            <p>Hello there, I am Ankit Raj aka Ankit Raj Mahpatra, I am a second-year BTech student.</p>
-            <p>I know a bit of Python, Arduino, JS, MySQL, Java, PHP</a> and currently learning GoLang.</p>
-            <p>I am the creator of <a href="https://pypi.org/project/pywhatkit/" target="blank">PyWhatKit</a> which has over 300k userbase till now.</p>
-            <p>I have a <a href="https://github.com/Ankit404butfound" target="blank">GitHub account</a> where I share most of my projects, there are some basic CS projects only.</p>
-            <p>Currently, I am living in Delhi.</p>
-            <p>I am currently a Junior Software developer at Aveti Learning Pvt. Ltd.</p>
-            </div>
-
-        
-        
-            <p style="margin-top: 100px; font-size: 40px;">Languages and Tools I know</p>
-            <div class="align-perfect">
-            <p align="center" style="margin-top: -50px;"> <a href="https://developer.android.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original-wordmark.svg" alt="android" width="40" height="40"/> </a> <a href="https://www.arduino.cc/" target="_blank"> <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="arduino" width="40" height="40"/> </a> <a href="https://aws.amazon.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://www.cprogramming.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> <a href="https://flask.palletsprojects.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="flask" width="40" height="40"/> </a> <a href="https://heroku.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://opencv.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="opencv" width="40" height="40"/> </a> <a href="https://www.php.net" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.qt.io/" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg" alt="qt" width="40" height="40"/> </a> <a href="https://www.selenium.dev" target="_blank"> <img src="https://raw.githubusercontent.com/detain/svg-logos/780f25886640cef088af994181646db2f6b1a3f8/svg/selenium-logo.svg" alt="selenium" width="40" height="40"/> </a> <a href="https://www.sqlite.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg" alt="sqlite" width="40" height="40"/> </a> 
-                <a href="https://go.dev/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg" alt="GO" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" width="40" height="40"/> </a>
-                <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/>
-            </p>
-            </div>
-            <p style="margin-top: 80px; font-size: 40px;">Some of my famous projects</p>
-            
-            <ul align="left">
-                <li><a href="https://github.com/Ankit404butfound/PyWhatKit">PyWhatKit</a></li>
-                <li><a href="https://github.com/Ankit404butfound/HomeworkMachine">HomeworkMachine</a></li>
-                <li><a href="https://github.com/Ankit404butfound/RandomProject">Keylogger</a></li>
-            
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about-me">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <br>
+        </nav>
+    </header>
 
-        </div>  
-    
-    </div> 
+    <canvas id="shootingStars"></canvas>
+
+    <div class="sections">
+        <section id="about-me">
+            <div class="about-container">
+                <!-- Left Text Content -->
+                <div class="about-text">
+                    <h1>Hello, I am Ankit Raj</h1>
+                    <p>Hello there, I am Ankit Raj aka Ankit Raj Mahpatra, I am a second-year BTech student.</p>
+                    <p>I know Python, Arduino, JS, Postgresql, Java, PHP and currently learning GoLang.</p>
+                    <p>I am the creator of PyWhatKit which has over 1.3M userbase till now.</p>
+                    <p>Currently, I am living in Delhi.</p>
+                    <p>I am currently a Software Developer at Aveti Learning Pvt. Ltd.</p></p>                    
+                </div>
         
-</div>
-  
-</div>
-<p style="text-align: center; color: rgb(34, 102, 131); margin-bottom: 50px;">Created by: Ankit Raj Mahapatra<br>Hosted by: GitHub</p>  
+                <!-- Right Image -->
+                <div class="about-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQGEiFkNoayHug/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1692594878909?e=1745452800&v=beta&t=FSPLZWlQjJ5nNYwPJNv4cIHyozxH9pNKUTJr0Y1jfCE" alt="Profile Image">
+                </div>
+            </div>
+            <div style="margin: 20px;">
+                <a href="https://github.com/Ankit404butfound/" target="_blank" style="color: #fff3f0; margin: 10px;"><i class="fa fa-github fa-3x"></i></a>
+                <a href="https://www.linkedin.com/in/ankit-raj-mahapatra/" target="_blank" style="color: #fff3f0; margin: 10px;"><i class="fa fa-linkedin fa-3x"></i></a>
+                <a href="https://www.quora.com/profile/Ankit-Raj-Mahapatra-3" target="_blank" style="color: #fff3f0; margin: 10px;"><i class="fa fa-quora fa-3x"></i></a>
+                <a href="mailto:ankitrajjitendra816@gmail.com" target="_blank" style="color: #fff3f0; margin: 10px;"><i class="fa fa-envelope fa-3x"></i></a>
+
+            </div>
+        </section>
+        
+
+        <section id="experience">
+            <div class="about-container">
+                <!-- Left Text Content -->
+                <div class="exp-text">
+                    <h1>I know things, I have</h1>
+                    <ul style="list-style-type: disc;">
+                        <li>1 year of experience as a Software Developer.</li>
+                        <li>Knowledge of various programming languages.</li>
+                        <li>Experience in building scalable backend systems.</li>
+                        <li>1 year of experience as a Software Developer.</li>
+                        <li>Knowledge of various programming languages.</li>
+                        <li>Experience in building scalable backend systems.</li>
+
+                    </ul>
+                </div>
+                <div class="about-text">
+                    <div>
+                        <img src="images/python.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/go.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/js.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/arduino.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/flask.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <br>
+                        <img src="images/postgresql.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/mysql.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/sqlite.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/redis.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/mongodb.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <br>
+                        <img src="images/git.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/firebase.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/linux.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/qt.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        <img src="images/aws.png" alt="Postgresql" style="width: 60px; height: 60px; margin: 4px;">
+                        
+                    </div>                   
+                </div>
+        
+                <!-- Right Image -->
+                
+            </div>
+            
+        </section>
+        
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>This is a dummy Projects section.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>This is a dummy Contact section.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>"A random quote about me!"</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
