@@ -22,6 +22,39 @@ window.addEventListener('wheel', (event) => {
     }, 1000);
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const repoContainer = document.getElementById("repo-container");
+    const githubUsername = "ankit404butfound"; // Replace with your GitHub username
+
+    async function fetchGitHubRepos() {
+        try {
+            const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated`);
+            const repos = await response.json();
+            
+            repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+            repos.slice(0, 6).forEach(repo => { // Display top 6 repos
+                const card = document.createElement("div");
+                card.className = "repo-card";
+                card.innerHTML = `
+                    <h3>${repo.name}</h3>
+                    <p>${repo.description || "No description available."}</p>
+                    <div class="repo-info">
+                        <span>⭐ ${repo.stargazers_count}</span>
+                        <span>🍴 ${repo.forks_count}</span>
+                    </div>
+                    <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+                `;
+                repoContainer.appendChild(card);
+            });
+        } catch (error) {
+            console.error("Error fetching repos:", error);
+            repoContainer.innerHTML = "<p>Failed to load repositories.</p>";
+        }
+    }
+
+    fetchGitHubRepos();
+});
+
 function scrollToSection(direction) {
     const sections = document.querySelectorAll('section');
     const currentScroll = window.scrollY;
