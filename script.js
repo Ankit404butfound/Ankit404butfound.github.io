@@ -5,42 +5,35 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let isScrolling = false;
+let lastScrollTime = 0;
 const stars = [];
 const mouseTrailParticles = [];  // Array to store the trail particles
 
 window.addEventListener('wheel', (event) => {
-    const delta = event.deltaY;
-    const direction = delta > 0 ? 'down' : 'up';
+    const now = Date.now();
+    if (now - lastScrollTime < 1000) {
+        event.preventDefault();
+        return; // throttle scrolls
+    }
     const currentSection = getCurrentSection();
-  
-    // Condition 1: Allow smooth natural scroll if in contact/footer and scrolling down
-    if (
-      direction === 'down' &&
-      currentSection &&
-      (currentSection.id === 'contact' || currentSection.id === 'footer')
-    ) {
-      return;
+    console.log(currentSection.id);
+    if (currentSection && (currentSection.id === 'contact') && event.deltaY > 0) {
+        return
     }
-  
-    // Condition 2: Only snap on large scroll deltas
-    const threshold = 100; // Customize based on testing
-    if (Math.abs(delta) < threshold) {
-      return; // ignore small touchpad scrolls
-    }
-  
-    // Otherwise, intercept scroll
     event.preventDefault();
-  
+    lastScrollTime = now;
     if (isScrolling) return;
+
     isScrolling = true;
-  
+
+    const direction = event.deltaY > 0 ? 'down' : 'up';
+
     scrollToSection(direction);
-  
+
     setTimeout(() => {
-      isScrolling = false;
+        isScrolling = false;
     }, 1000);
-  }, { passive: false });
-  
+}, { passive: false });
 
 function getCurrentSection() {
     const sections = document.querySelectorAll('section');
