@@ -9,6 +9,12 @@ const stars = [];
 const mouseTrailParticles = [];  // Array to store the trail particles
 
 window.addEventListener('wheel', (event) => {
+    const currentSection = getCurrentSection();
+    console.log(currentSection.id);
+    if (currentSection && (currentSection.id === 'contact') && event.deltaY > 0) {
+        return
+    }
+    event.preventDefault();
     if (isScrolling) return;
 
     isScrolling = true;
@@ -19,8 +25,22 @@ window.addEventListener('wheel', (event) => {
 
     setTimeout(() => {
         isScrolling = false;
-    }, 1000);
-});
+    }, 100);
+}, { passive: false });
+
+function getCurrentSection() {
+    const sections = document.querySelectorAll('section');
+    const scrollY = window.scrollY;
+    const sectionHeight = window.innerHeight;
+
+    for (let section of sections) {
+        const top = section.offsetTop;
+        if (scrollY >= top - sectionHeight / 2 && scrollY < top + sectionHeight / 2) {
+            return section;
+        }
+    }
+    return null;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const repoContainer = document.getElementById("repo-container");

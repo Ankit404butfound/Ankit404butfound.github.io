@@ -318,3 +318,31 @@ footer {
 .contact-form button:hover {
     background: #0056b3;
 }
+.glow-header {
+    color: #fff;
+    text-shadow: 0 0 2px #93e9ff,
+                 0 0 8px #93ffe8
+}
+
+.glow-body {
+    color: #fff;
+    text-shadow: 0 0 2px #fff,
+                 0 0 7px #e19dfe
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    border: 2px solid var(--green); /* or white */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background-color: rgba(0, 255, 150, 0.2); /* subtle fill */
+    box-shadow:
+      0 0 10px rgba(0, 255, 150, 0.6),
+      0 0 20px rgba(0, 255, 150, 0.4),
+      0 0 30px rgba(0, 255, 150, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
