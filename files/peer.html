@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Transfer with PeerJS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        #fileInput {
+            margin-top: 20px;
+        }
+
+        #fileName {
+            margin-top: 20px;
+            color: green;
+        }
+
+        .peer-id-container {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .input-container {
+            margin: 20px 0;
+        }
+
+        .input-container input, .input-container button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .input-container button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .input-container button:hover {
+            background-color: #45a049;
+        }
+
+        #fileName {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .success-message {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <h1>File Transfer with PeerJS</h1>
+    
+    <div>
+        <label for="fileInput">Choose a file to send:</label>
+        <input type="file" id="fileInput">
+        <button id="sendButton">Send File</button>
+        <p id="fileName"></p>
+    </div>
+    
+    <div class="input-container">
+        <label for="peerId">Enter Peer ID to connect:</label>
+        <input type="text" id="peerId" placeholder="Peer ID">
+        <button id="connectButton">Connect</button>
+    </div>
+
+    <!-- Display generated Peer ID -->
+    <div class="peer-id-container" id="peerIdDisplay">
+        Peer ID: <span id="peerIdText">Loading...</span>
+    </div>
+
+    <!-- Success Message when connection is established -->
+    <div class="success-message" id="successMessage">
+        Successfully connected to the peer!
+    </div>
+
+    <!-- Updated PeerJS CDN Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.5/peerjs.min.js"></script>
+
+    <script>
+        let peer;
+        let conn;
+
+        // Generate a 6-digit hexadecimal Peer ID
+        function generateHexId() {
+            return Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0');
+        }
+
+        // Create the peer and display the Peer ID on the frontend
+        function createPeer() {
+            const peerId = generateHexId();
+            
+            // Create a new Peer instance with the custom peerId
+            peer = new Peer(peerId);
+
+            // Display Peer ID in the frontend
+            document.getElementById('peerIdText').textContent = peerId;
+
+            peer.on('open', (id) => {
+                console.log('My peer ID is: ' + id);  // This should be the custom 6-digit hex ID
+            });
+
+            peer.on('connection', (connection) => {
+                console.log('Connected to peer:', connection.peer);
+                conn = connection;
+                setupFileReceiver();
+
+                // Show success message when connection is made
+                document.getElementById('successMessage').style.display = 'block';
+            });
+        }
+
+        function setupFileReceiver() {
+            conn.on('data', (data) => {
+                if (data instanceof ArrayBuffer) {
+                    const blob = new Blob([data]);
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'received_file';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            });
+        }
+
+        // Connect to another peer
+        document.getElementById('connectButton').addEventListener('click', () => {
+            const peerId = document.getElementById('peerId').value;
+            if (peerId) {
+                conn = peer.connect(peerId);
+                conn.on('open', () => {
+                    console.log('Connected to peer:', peerId);
+                    setupFileReceiver();
+
+                    // Show success message when connection is made
+                    document.getElementById('successMessage').style.display = 'block';
+                });
+            }
+        });
+
+        // Send the file to the peer
+        document.getElementById('sendButton').addEventListener('click', () => {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (file && conn) {
+                document.getElementById('fileName').textContent = `Sending: ${file.name}`;
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const arrayBuffer = event.target.result;
+                    conn.send(arrayBuffer);
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+
+        // Initialize the peer
+        createPeer();
+    </script>
+</body>
+</html>
