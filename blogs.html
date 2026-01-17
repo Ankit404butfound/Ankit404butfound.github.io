@@ -222,6 +222,7 @@
             border-radius: 8px;
             border: 1px solid rgba(88, 166, 255, 0.2);
             flex-shrink: 0;
+            margin-top: 30px;
         }
 
         .blog-card-content {
@@ -264,6 +265,27 @@
             color: #8b949e;
         }
 
+        .blog-card-type {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .blog-card-type.personal {
+            background: rgba(88, 166, 255, 0.2);
+            color: #58a6ff;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+        }
+
+        .blog-card-type.company {
+            background: rgba(121, 192, 255, 0.2);
+            color: #79c0ff;
+            border: 1px solid rgba(121, 192, 255, 0.3);
+        }
+
+
         /* Loading State */
         .loading {
             text-align: center;
@@ -299,11 +321,10 @@
                     <a href="index.html" class="glow-header blog-title-link">Ankit Raj</a>
                 </li>
                 <li class="blog-header-center">
-                    <a href="index.html" class="glow-header">Home</a>
-                    <a href="blogs.html" class="glow-header">Blog</a>
+                    <a href="index.html#experience" class="glow-header">Experience</a>
                     <a href="index.html#projects" class="glow-header">Projects</a>
-                    <a href="index.html#about-me" class="glow-header">About</a>
                     <a href="index.html#contact" class="glow-header">Contact</a>
+                    <a href="blogs.html" class="glow-header">Blogs</a>
                 </li>
                 <li class="blog-header-right">
                     <a href="https://github.com/Ankit404butfound/" target="_blank" rel="noopener noreferrer" class="blog-social-link" title="GitHub">
@@ -325,6 +346,8 @@
             </ul>
         </nav>
     </header>
+
+    <canvas id="shootingStars"></canvas>
 
     <!-- Mobile Warning Banner -->
     <div id="mobile-warning" class="mobile-warning">
@@ -366,7 +389,17 @@
 
             blogsListEl.innerHTML = blogs.map(blog => {
                 const formattedDate = formatDate(blog.date_published);
-                const blogUrl = `blog.html?blog_id=${blog.blog_id}`;
+                const blogUrl = `blog.html#${blog.blog_id}`;
+                const blogType = blog.type || 'Personal'; // Default to Personal if not specified
+                
+                // Check if type contains "Personal" (case insensitive)
+                const isPersonal = blogType.toLowerCase().includes('personal');
+                // If not personal, it's a company
+                const isCompany = !isPersonal;
+                const typeClass = isCompany ? 'company' : 'personal';
+                
+                // Use the type text directly
+                const typeDisplay = blogType;
                 
                 return `
                     <a href="${blogUrl}" class="blog-card">
@@ -375,10 +408,11 @@
                             <p class="blog-card-description glow-body">${blog.description}</p>
                             <div class="blog-card-meta">
                                 <span class="blog-card-publisher glow-body">${blog.publisher}</span>
+                                <span class="blog-card-type ${typeClass}">${typeDisplay}</span>
                                 <span class="blog-card-date">${formattedDate}</span>
                             </div>
                         </div>
-                        <img src="${blog.preview_image}" alt="${blog.title}" class="blog-preview-image" onerror="this.src='https://via.placeholder.com/200x150/161b22/58a6ff?text=Blog'">
+                        <img src="${blog.preview_image}" alt="${blog.title}" class="blog-preview-image"">
                     </a>
                 `;
             }).join('');
@@ -406,5 +440,6 @@
             loadBlogs();
         });
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
