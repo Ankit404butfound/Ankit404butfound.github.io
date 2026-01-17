@@ -7,7 +7,7 @@ html {
 
 body {
     margin: 0;
-    background-color: #0e1116; /* Dark greyish background */
+    background-color: #0d1117; /* Dark greyish background */
     color: white;
     font-family: 'Montserrat', sans-serif;
     display: flex;
@@ -67,6 +67,10 @@ h1, h2 {
     font-size: 3rem; /* Adjust the value as needed */
     margin-bottom: 20px;
     font-weight: 700;
+    background: linear-gradient(135deg, #58a6ff 0%, #a5d6ff 50%, #f0f6fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 ul {
@@ -76,6 +80,17 @@ ul {
 
 ul li {
     margin: 10px 0;
+    color: #79c0ff;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+ul li:hover {
+    color: #a5d6ff;
+    transform: translateX(5px);
+}
+
+ul li::marker {
+    color: #58a6ff;
 }
 
 footer {
@@ -85,7 +100,15 @@ footer {
     background-color: #333;
     width: 100%;
     text-align: center;
-    color: white;
+    color: #c9d1d9;
+}
+
+footer p {
+    color: #c9d1d9;
+}
+
+footer .glow-header {
+    color: #58a6ff;
 }
 
 .scroll-btn {
@@ -117,7 +140,9 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(22, 27, 34, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(88, 166, 255, 0.2);
     padding: 10px;
     z-index: 100;
 }
@@ -133,12 +158,14 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: #8b949e;
     text-decoration: none;
     font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
+    color: #c9d1d9;
     text-decoration: underline;
 }
 
@@ -161,6 +188,16 @@ footer {
 .about-text {
     flex: 1; /* Takes up available space */
     text-align: left;
+}
+
+/* Make ALL paragraphs the same color */
+.about-text p {
+    color: #79c0ff;
+    transition: color 0.3s ease;
+}
+
+.about-text p:hover {
+    color: #a5d6ff;
 }
 
 .about-image {
@@ -255,16 +292,30 @@ footer {
 
 .repo-card {
     background: #1e1e2e;
-    color: #ffffff;
+    color: #79c0ff;
     padding: 15px;
     border-radius: 10px;
     width: 300px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.3s ease;
+    border: 1px solid rgba(88, 166, 255, 0.1);
+}
+
+.repo-card p {
+    color: #a5d6ff;
+}
+
+.repo-card h3 {
+    color: #58a6ff;
+}
+
+.repo-card .repo-info {
+    color: #79c0ff;
 }
 
 .repo-card:hover {
     transform: scale(1.05);
+    border-color: rgba(88, 166, 255, 0.3);
 }
 
 .repo-info {
@@ -277,9 +328,14 @@ footer {
 .repo-card a {
     display: inline-block;
     text-decoration: none;
-    color: #00aaff;
+    color: #58a6ff;
     font-weight: bold;
     margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.repo-card a:hover {
+    color: #79c0ff;
 }
 
 
@@ -296,38 +352,82 @@ footer {
 }
 .contact-form input, .contact-form textarea {
     width: 100%;
-    /* padding: 10px; */
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 12px;
     margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    background: #333;
-    color: white;
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    border-radius: 6px;
+    background: rgba(13, 17, 23, 0.8);
+    color: #c9d1d9;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(201, 209, 217, 0.5);
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: #58a6ff;
+    background: rgba(13, 17, 23, 0.95);
 }
 .contact-form button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
-    background: #007BFF;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #58a6ff 0%, #79c0ff 100%);
     color: white;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
+
 .contact-form button:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #79c0ff 0%, #a5d6ff 100%);
+    transform: translateY(-2px);
 }
 .glow-header {
-    color: #fff;
-    text-shadow: 0 0 2px #93e9ff,
-                 0 0 8px #93ffe8
+    background: linear-gradient(135deg, #a358ff 0%, #79c0ff 50%, #a5d6ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Header-specific glow-header should match site theme */
+header .glow-header,
+header nav .glow-header {
+    background: linear-gradient(135deg, #8558ff 0%, #8e7dff 50%, #99c4f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Ensure header nav links with glow-header class match header theme */
+header nav ul li.glow-header a {
+    color: #8b949e;
+}
+
+header nav ul li.glow-header a:hover {
+    color: #c9d1d9;
 }
 
 .glow-body {
-    color: #fff;
-    text-shadow: 0 0 2px #fff,
-                 0 0 7px #e19dfe
+    color: #79c0ff;
+    transition: color 0.3s ease;
+}
+
+.glow-body:hover {
+    color: #a5d6ff;
+}
+
+/* Make all body text the same color */
+section p,
+section li,
+section span {
+    color: #79c0ff;
 }
 
 .custom-cursor {
@@ -345,4 +445,37 @@ footer {
       0 0 20px rgba(0, 255, 150, 0.4),
       0 0 30px rgba(0, 255, 150, 0.2);
     transition: box-shadow 0.3s ease;
-  }
+}
+
+/* Social Links Styling - Colorful theme */
+#about-me a[href^="http"],
+#about-me a[href^="mailto"],
+#about-me a[href^="files"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(88, 166, 255, 0.15);
+    color: #58a6ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 10px;
+    border: 2px solid rgba(88, 166, 255, 0.3);
+}
+
+#about-me a[href^="http"]:hover,
+#about-me a[href^="mailto"]:hover,
+#about-me a[href^="files"]:hover {
+    background: rgba(88, 166, 255, 0.3);
+    transform: translateY(-3px) scale(1.1);
+    color: #79c0ff;
+    border-color: rgba(121, 192, 255, 0.6);
+}
+
+#about-me a[href^="http"] i,
+#about-me a[href^="mailto"] i,
+#about-me a[href^="files"] i {
+    font-size: 1.8em;
+}
