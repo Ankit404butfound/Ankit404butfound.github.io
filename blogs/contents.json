@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Blog 1",
+        "description": "This is the first blog",
+        "date_published": "2026-01-17 12:00:00",
+        "publisher": "Ankit Raj",
+        "preview_image": "https://via.placeholder.com/150",
+        "blog_id": "blog-2026-01-17-12-00-00"
+    },
+    {
+        "title": "Blog 2",
+        "description": "This is the second blog",
+        "date_published": "2026-01-18 12:00:00",
+        "publisher": "Ankit Raj",
+        "preview_image": "https://via.placeholder.com/150",
+        "blog_id": "blog-2026-01-18-12-00-00"
+    },
+    {
+        "title": "Blog 3",
+        "description": "This is the third blog",
+        "date_published": "2026-01-19 12:00:00",
+        "publisher": "Ankit Raj",
+        "preview_image": "https://via.placeholder.com/150",
+        "blog_id": "blog-2026-01-19-12-00-00"
+    }
+]
