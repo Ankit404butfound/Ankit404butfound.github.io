@@ -6,7 +6,6 @@
     <link rel="icon" href="images/me-ascii-art.png" type="image/gif">
     <title>Ankit Raj's Blog</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         /* Blog-specific styles - markdown content */
         body {
@@ -98,193 +97,171 @@
             }
         }
 
+        /* Mobile Warning Banner */
+        .mobile-warning {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.95), rgba(255, 152, 0, 0.95));
+            color: #000;
+            padding: 15px 20px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 193, 7, 0.8);
+        }
 
-        /* Main Content */
-        .container {
-            max-width: 1200px;
+        .mobile-warning p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            padding-right: 20px;
+        }
+
+        .mobile-warning button {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: #000;
+            font-size: 24px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            line-height: 1;
+            transition: background 0.3s ease;
+        }
+
+        .mobile-warning button:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-warning {
+                display: block;
+            }
+        }
+
+        /* Blog Listing Styles - Medium-like */
+        .blogs-container {
+            max-width: 1050px;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: 20px 40px 60px 40px;
         }
 
-        /* Markdown Content Styling */
-        .markdown-content {
-            background: #161b22;
-            border: 1px solid #21262d;
-            border-radius: 12px;
-            padding: 60px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        .blogs-header {
+            margin-bottom: 40px;
         }
 
-        .markdown-content h1 {
-            font-size: 2.5em;
+        .blogs-header h1 {
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            margin-top: 0;
-            line-height: 1.2;
-            letter-spacing: -1px;
-        }
-
-        .markdown-content h1.glow-header {
-            background: linear-gradient(135deg, #a358ff 0%, #79c0ff 50%, #a5d6ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .markdown-content h2 {
-            font-size: 2em;
-            font-weight: 600;
-            margin-top: 50px;
-            margin-bottom: 20px;
-            line-height: 1.3;
-            letter-spacing: -0.5px;
-        }
-
-        .markdown-content h2.glow-header {
-            background: linear-gradient(135deg, #a358ff 0%, #79c0ff 50%, #a5d6ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .markdown-content h3 {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: #79c0ff;
-            margin-top: 40px;
             margin-bottom: 15px;
-            line-height: 1.4;
         }
 
-        .markdown-content h4 {
-            font-size: 1.25em;
-            font-weight: 600;
-            color: #a5d6ff;
-            margin-top: 30px;
-            margin-bottom: 12px;
-        }
-
-        .markdown-content p {
-            font-size: 1.1em;
-            margin-bottom: 24px;
-            line-height: 1.8;
-        }
-
-        .markdown-content p.glow-body {
-            color: #79c0ff;
-        }
-
-        .markdown-content a {
-            color: #58a6ff;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(88, 166, 255, 0.3);
-            transition: all 0.2s ease;
-        }
-
-        .markdown-content a:hover {
-            color: #79c0ff;
-            border-bottom-color: #79c0ff;
-        }
-
-        .markdown-content ul,
-        .markdown-content ol {
-            margin: 24px 0;
-            padding-left: 30px;
-        }
-
-        .markdown-content li {
-            margin-bottom: 12px;
-            font-size: 1.1em;
-            line-height: 1.8;
-        }
-
-        .markdown-content li.glow-body {
-            color: #79c0ff;
-        }
-
-        .markdown-content li::marker {
-            color: #58a6ff;
-        }
-
-        .markdown-content blockquote {
-            border-left: 4px solid #58a6ff;
-            padding-left: 24px;
-            margin: 30px 0;
-            color: #8b949e;
-            font-style: italic;
-            background: rgba(88, 166, 255, 0.05);
-            padding: 20px 24px;
-            border-radius: 6px;
-        }
-
-        .markdown-content code {
-            background: rgba(110, 118, 129, 0.2);
-            color: #f85149;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
-            font-size: 0.9em;
-        }
-
-        .markdown-content pre {
-            background: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            overflow-x: auto;
-            margin: 30px 0;
+        .blogs-header p {
+            font-size: 1.2em;
             line-height: 1.6;
         }
 
-        .markdown-content pre code {
-            background: transparent;
-            color: #c9d1d9;
-            padding: 0;
-            border-radius: 0;
-            font-size: 0.9em;
-            display: block;
+        .blog-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(88, 166, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
         }
 
-        .markdown-content hr {
-            border: none;
-            border-top: 1px solid #30363d;
-            margin: 50px 0;
+        .blog-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #58a6ff, #79c0ff, #a5d6ff);
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.5),
+                        0 0 20px rgba(88, 166, 255, 0.3),
+                        0 0 30px rgba(88, 166, 255, 0.2);
+            transition: width 0.5s ease, box-shadow 0.3s ease;
         }
 
-        .markdown-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 30px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .markdown-content table {
+        .blog-card:hover::after {
             width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            border: 1px solid #30363d;
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.8),
+                        0 0 30px rgba(88, 166, 255, 0.5),
+                        0 0 45px rgba(88, 166, 255, 0.3);
+        }
+
+        .blog-card:hover {
+            border-bottom-color: transparent;
+        }
+
+        .blog-card:last-child {
+            border-bottom: none;
+        }
+
+        .blog-preview-image {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 8px;
-            overflow: hidden;
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            flex-shrink: 0;
         }
 
-        .markdown-content th {
-            background: #161b22;
-            color: #58a6ff;
-            padding: 12px;
-            text-align: left;
+        .blog-card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .blog-card-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+            color: #323b45 !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: #a89cfb !important;
+            background-clip: unset !important;
+        }
+
+        .blog-card-description {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9em;
+        }
+
+        .blog-card-publisher {
             font-weight: 600;
-            border-bottom: 2px solid #30363d;
         }
 
-        .markdown-content td {
-            padding: 12px;
-            border-bottom: 1px solid #21262d;
-            color: #c9d1d9;
-        }
-
-        .markdown-content tr:hover {
-            background: rgba(88, 166, 255, 0.05);
+        .blog-card-date {
+            color: #8b949e;
         }
 
         /* Loading State */
@@ -295,30 +272,19 @@
             font-size: 1.2em;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .container {
+            .blog-card {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .blog-preview-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .blogs-container {
                 padding: 40px 20px;
-            }
-
-            .markdown-content {
-                padding: 40px 30px;
-            }
-
-            .markdown-content h1 {
-                font-size: 2em;
-            }
-
-            .markdown-content h2 {
-                font-size: 1.75em;
-            }
-
-            .markdown-content h3 {
-                font-size: 1.35em;
-            }
-
-            .markdown-content p {
-                font-size: 1em;
             }
         }
     </style>
@@ -334,7 +300,7 @@
                 </li>
                 <li class="blog-header-center">
                     <a href="index.html" class="glow-header">Home</a>
-                    <a href="blog.html" class="glow-header">Blog</a>
+                    <a href="blogs.html" class="glow-header">Blog</a>
                     <a href="index.html#projects" class="glow-header">Projects</a>
                     <a href="index.html#about-me" class="glow-header">About</a>
                     <a href="index.html#contact" class="glow-header">Contact</a>
@@ -360,173 +326,85 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="loading" id="loading">Loading content...</div>
-        <div class="markdown-content" id="markdown-content" style="display: none;"></div>
+    <!-- Mobile Warning Banner -->
+    <div id="mobile-warning" class="mobile-warning">
+        <p>⚠️ This website is not optimized for mobile devices. For the best experience, please visit on a desktop or tablet.</p>
+        <button onclick="document.getElementById('mobile-warning').style.display='none'">×</button>
     </div>
-    <div id="disqus_thread"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://https-ankitrajmahapatra-in.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <!-- Main Content -->
+    <div class="blogs-container">
+        <div class="blogs-header">
+            <h1 class="glow-header">Blog Posts</h1>
+            <p class="glow-body">Welcome to my blog posts! I post coding things, tutorials, project updates, and share my experiences as a software developer. Here you'll find articles about programming, best practices, and insights from my journey in tech.</p>
+        </div>
+        <div class="loading" id="loading">Loading blogs...</div>
+        <div id="blogs-list"></div>
+    </div>
 
     <script>
-        // Configure marked.js
-        marked.setOptions({
-            breaks: true,
-            gfm: true,
-            highlight: function(code, lang) {
-                // Simple syntax highlighting (you can use highlight.js for better highlighting)
-                return code;
-            }
-        });
-
-        // Sample markdown content (replace with your actual content or load from file/API)
-        const markdownContent = `# Welcome to My Blog
-
-This is a coding-themed blog with a Medium-like interface. Here you can write about your thoughts, projects, and experiences.
-
-## Getting Started
-
-This blog supports full markdown syntax including:
-
-- **Bold text**
-- *Italic text*
-- \`Inline code\`
-- [Links](https://example.com)
-
-### Code Blocks
-
-\`\`\`javascript
-function greet(name) {
-    console.log(\`Hello, \${name}!\`);
-}
-
-greet('World');
-\`\`\`
-
-### Blockquotes
-
-> "The best way to predict the future is to implement it."
-> — David Heinemeier Hansson
-
-### Lists
-
-1. First item
-2. Second item
-3. Third item
-
-- Unordered item
-- Another item
-
-### Tables
-
-| Feature | Status |
-|---------|--------|
-| Markdown | ✅ |
-| Syntax Highlighting | ✅ |
-| Responsive | ✅ |
-
----
-
-Enjoy reading! 🚀
-`;
-
-        // Render markdown
-        function renderMarkdown(content) {
-            const loadingEl = document.getElementById('loading');
-            const contentEl = document.getElementById('markdown-content');
-            
-            if (!content || content.trim() === '') {
-                contentEl.innerHTML = '<p class="glow-body">No content available.</p>';
-            } else {
-                // Preprocess: Convert literal \\n to actual newlines
-                let processedContent = content.replace(/\\n/g, '\n');
-                
-                // Render markdown
-                const html = marked.parse(processedContent);
-                contentEl.innerHTML = html;
-                
-                // Add glow classes to headings and paragraphs
-                const headings = contentEl.querySelectorAll('h1, h2');
-                headings.forEach(heading => {
-                    heading.classList.add('glow-header');
-                });
-                
-                const paragraphs = contentEl.querySelectorAll('p');
-                paragraphs.forEach(para => {
-                    para.classList.add('glow-body');
-                });
-                
-                const listItems = contentEl.querySelectorAll('li');
-                listItems.forEach(li => {
-                    li.classList.add('glow-body');
-                });
-            }
-            
-            loadingEl.style.display = 'none';
-            contentEl.style.display = 'block';
+        // Format date for display
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
         }
 
-        // Load markdown content
-        // You can replace this with:
-        // 1. Loading from a file
-        // 2. Loading from an API
-        // 3. Using URL parameters
-        // 4. Using localStorage
-        function loadContent() {
-            // Check if content is in URL parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            const contentParam = urlParams.get('content');
+        // Render blog cards
+        function renderBlogs(blogs) {
+            const loadingEl = document.getElementById('loading');
+            const blogsListEl = document.getElementById('blogs-list');
             
-            if (contentParam) {
-                // Decode base64 content if needed
-                try {
-                    const decoded = decodeURIComponent(contentParam);
-                    renderMarkdown(decoded);
-                    return;
-                } catch (e) {
-                    console.error('Error decoding content:', e);
-                }
-            }
-            
-            // Check localStorage
-            const savedContent = localStorage.getItem('blogContent');
-            if (savedContent) {
-                renderMarkdown(savedContent);
+            if (!blogs || blogs.length === 0) {
+                blogsListEl.innerHTML = '<p class="glow-body">No blogs available.</p>';
+                loadingEl.style.display = 'none';
                 return;
             }
-            
-            // Use default sample content
-            renderMarkdown(markdownContent);
+
+            // Sort blogs by date (newest first)
+            blogs.sort((a, b) => new Date(b.date_published) - new Date(a.date_published));
+
+            blogsListEl.innerHTML = blogs.map(blog => {
+                const formattedDate = formatDate(blog.date_published);
+                const blogUrl = `blog.html?blog_id=${blog.blog_id}`;
+                
+                return `
+                    <a href="${blogUrl}" class="blog-card">
+                        <div class="blog-card-content">
+                            <h2 class="blog-card-title">${blog.title}</h2>
+                            <p class="blog-card-description glow-body">${blog.description}</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-card-publisher glow-body">${blog.publisher}</span>
+                                <span class="blog-card-date">${formattedDate}</span>
+                            </div>
+                        </div>
+                        <img src="${blog.preview_image}" alt="${blog.title}" class="blog-preview-image" onerror="this.src='https://via.placeholder.com/200x150/161b22/58a6ff?text=Blog'">
+                    </a>
+                `;
+            }).join('');
+
+            loadingEl.style.display = 'none';
+        }
+
+        // Load blogs from contents.json
+        async function loadBlogs() {
+            try {
+                const response = await fetch('blogs/contents.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load blogs');
+                }
+                const blogs = await response.json();
+                renderBlogs(blogs);
+            } catch (error) {
+                console.error('Error loading blogs:', error);
+                document.getElementById('loading').textContent = 'Failed to load blogs.';
+            }
         }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            loadContent();
+            loadBlogs();
         });
-
-        // Example: To load content from a file, you can use:
-        // async function loadFromFile(filename) {
-        //     const response = await fetch(filename);
-        //     const text = await response.text();
-        //     renderMarkdown(text);
-        // }
     </script>
 </body>
 </html>
